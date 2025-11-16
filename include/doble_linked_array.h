@@ -23,8 +23,6 @@ DoublyLinkedList* create_doubly_linked_list();
 void free_doubly_linked_list(DoublyLinkedList *list);
 
 // Inserción
-void insert_begin_dll(DoublyLinkedList *list, int data);
-void insert_end_dll(DoublyLinkedList *list, int data);
 void insert_at_dll(DoublyLinkedList *list, int data, int position);
 
 // Eliminación
@@ -39,8 +37,5 @@ int get_at_dll(const DoublyLinkedList *list, int position);
 void print_forward_dll(const DoublyLinkedList *list);
 void print_backward_dll(const DoublyLinkedList *list);
 
-// Utilidades
-int is_empty_dll(const DoublyLinkedList *list);
-int get_size_dll(const DoublyLinkedList *list);
 
 #endif
