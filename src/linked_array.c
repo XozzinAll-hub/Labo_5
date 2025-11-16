@@ -1,4 +1,4 @@
-#include "linkled_array.h"
+#include "linked_array.h"
 //crear lista enlazada
 LinkedList* create_linked_list() {
     LinkedList *list = (LinkedList *)malloc(sizeof(LinkedList));
@@ -67,3 +67,75 @@ void insert_at(LinkedList *list, int data, int position) {
     list->size++;
     printf("elemento %d insertado en la posición %d\n", data, position);
 }  
+//eliminar elemento basado en data
+int delete_element(LinkedList *list, int data) {
+    //headersguard
+    if (list == NULL) {
+        printf("ERROR>>no hay lista enlazada\n");
+        return -1;
+    }
+    Node *tempactu= list->head;
+    Node *tempprev = NULL;
+    while (tempactu != NULL) {
+        if (tempactu->data == data) {
+            if (tempprev == NULL) { // Eliminar el primer nodo
+                list->head = tempactu->next;
+            } else {
+                tempprev->next = tempactu->next;
+            }
+            free(tempactu);
+            list->size--;
+            printf("elemento %d eliminado de la lista enlazada\n", data);
+            return data; // Retorna el dato eliminado
+        }
+        tempprev = tempactu;
+        tempactu = tempactu->next;
+    }
+    printf("elemento %d no encontrado en la lista enlazada\n", data);
+    return -1; // Valor inválido si no se encuentra el elemento
+}
+//buscar elemento en la lista enlazada
+int search_element(const LinkedList *list, int data) {
+    //headersguard
+    if (list == NULL) {
+        printf("ERROR>>no hay lista enlazada\n");
+        return -1;
+    }
+    Node *tempactu = list->head;
+    int position = 0;
+
+    while (tempactu != NULL) {
+        if (tempactu->data == data) {
+            printf("elemento %d encontrado en la posición %d\n", data, position);
+            return position; // Retorna y termina el while
+        }
+        tempactu = tempactu->next;
+        position++;
+    }
+    // tempactu == NULL es un error 
+    printf("elemento %d no encontrado en la lista enlazada\n", data);
+    return -1; // Valor inválido si no se encuentra el elemento
+}
+//imprimir lista enlazada
+void print_list(const LinkedList *list) {
+    //headersguard
+    if (list == NULL) {
+        printf("ERROR>>no hay lista enlazada\n");
+        return;
+    }
+    if (list->head == NULL)
+        printf("lista enlazada vacía\n");
+        return;     
+    
+    if (list->size == 0) {
+        printf("lista enlazada vacía\n");
+        return;
+    }
+    printf("tamanio de la lista %d", list->size);
+    Node *tempactu = list->head;
+    while (tempactu != NULL) {
+        printf(" -> %d", tempactu->data);
+        tempactu = tempactu->next;
+    }
+    printf("\n");
+}
