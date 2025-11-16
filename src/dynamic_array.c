@@ -28,6 +28,7 @@ void add_element(DynamicArray *da, int element) {
 }
 //eliminar elemento del arreglo dinamico
 void remove_element(DynamicArray *da, int index) {//index elemento a eliminar
+    int removed_element = da->array[index];
     if (da == NULL) {
         printf("ERROR>>no hay arreglo\n");
         return;
@@ -36,11 +37,12 @@ void remove_element(DynamicArray *da, int index) {//index elemento a eliminar
         printf("índice fuera de rango\n");
         return;
     }
+    
     for (int i = index; i < da->size - 1; i++) {
         da->array[i] = da->array[i + 1];
     }
     da->size--;
-    printf("elemento en índice %d eliminado del arreglo\n", index);
+    printf("elemento en índice %d eliminado del arreglo\n", removed_element, index);
 }
 
 //obtener elemento del arreglo dinamico
@@ -72,4 +74,13 @@ void print_array(const DynamicArray *da) {
         printf("%d ", da->array[i]);
     }
     printf("\n");
-}   
+}  
+
+//liberar el espacio del arreglo dinamico
+void free_array(DynamicArray *da) {
+    if (da != NULL) {
+        free(da->array);  // Liberar el arreglo interno primero
+        free(da);         // Liberar la estructura
+        printf("Arreglo dinámico liberado\n");
+    }
+}
