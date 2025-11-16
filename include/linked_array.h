@@ -27,12 +27,9 @@ void insert_at(LinkedList *list, int data, int position);
 
 // Eliminación
 int delete_element(LinkedList *list, int data);
-int delete_at(LinkedList *list, int position);
 
 // Búsqueda y acceso
 int search_element(const LinkedList *list, int data);
-int get_at(const LinkedList *list, int position);
-
 // Utilidades
 void print_list(const LinkedList *list); // Imprime la lista
 int is_empty_list(const LinkedList *list); // Verifica si la lista está vacía

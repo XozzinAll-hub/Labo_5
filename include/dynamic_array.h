@@ -16,12 +16,9 @@ void free_array(DynamicArray *da);
 
 // Operaciones básicas
 void add_element(DynamicArray *da, int element);
-int remove_element(DynamicArray *da, int index);
-int get_element(const DynamicArray *da, int index);
+void remove_element(DynamicArray *da, int index);
+void get_element(const DynamicArray *da, int index);
 
 // Utilidades
 void print_array(const DynamicArray *da);
-int is_empty(const DynamicArray *da);
-int get_size(const DynamicArray *da);
-
 #endif
