@@ -96,3 +96,82 @@ void insert_at_dll(DoublyLinkedList *list, int data, int position) {
     tempactu->next = new_node;
     list->size++;
 }
+//eliminar un elemento especifico de la lista doblemente enlazada
+int delete_element_dll(DoublyLinkedList *list, int data) {
+    //header guard
+    if (!list) {
+        printf("ERROR>>no hay lista para eliminar\n");
+        return -1;
+    }
+    DNode *tempactu = list->head;
+    while (tempactu != NULL) {
+        tempactu = tempactu->next;
+        if (tempactu == NULL) {
+            printf("elemento %d no encontrado en la lista\n", data);
+            return -1;
+        }
+        //nodos vecinos
+        //si el previo nodo no es nulo
+        if (tempactu->prev != NULL) {
+            tempactu->prev->next = tempactu->next;
+        } else {
+            list->head = tempactu->next; // actualizar head si es el primer nodo
+        }
+        //ahora con el siguiente nodo
+        if (tempactu->next != NULL) {
+            tempactu->next->prev = tempactu->prev;
+        } else {// si es el ultimo nodo ;-;
+            list->tail = tempactu->prev; // actualizar tail si es el último nodo
+    }
+    free(tempactu);
+    list->size--;
+    printf("elemento %d eliminado de la lista\n", data);
+    return data;
+    }
+    return -1; // En caso de no encontrar el elemento
+}
+
+//imprimir la lista hacia adelante
+void print_forward_dll(const DoublyLinkedList *list) {
+    //header guard
+    if (!list) {
+        printf("ERROR>>no hay lista para imprimir\n");
+        return;
+    }
+    if(list->size == 0) {
+        printf("La lista está vacía\n");
+        return;
+    }
+    printf("lista doblemente enlazada (hacia adelante): ");
+    DNode *actu = list->head;
+    while (actu != NULL) {
+        printf("%d ", actu->data);
+        if(actu->next != NULL) {
+            printf(" - ");
+        }
+        actu = actu->next;
+    }
+    printf("\n");
+}
+//imprimir la lista hacia atras
+void print_backward_dll(const DoublyLinkedList *list) {
+    //header guard
+    if (!list) {
+        printf("ERROR>>no hay lista para imprimir\n");
+        return;
+    }
+    if(list->size == 0) {
+        printf("La lista está vacía\n");
+        return;
+    }
+    printf("lista doblemente enlazada (hacia atrás): ");
+    DNode *actu = list->tail;
+    while (actu != NULL) {
+        printf("%d ", actu->data);
+        if(actu->prev != NULL) {
+            printf(" - ");
+        }
+        actu = actu->prev;
+    }
+    printf("\n");
+} 
