@@ -87,3 +87,18 @@ int pop(Stack *stack) {
     printf("elemento %d ha sido popeado \n", item);
     return item;
 }
+//peek> devolver el elemento en el tope del stack sin eliminarlo
+int peek(const Stack *stack) {
+    //hederguard
+    if(!stack) {
+        printf("ERROR>> no hay pila\n");
+        return -1; // Valor inválido
+    }
+    if (is_empty(stack)) {
+        printf("ERROR>> pila vacia, no se puede hacer peek\n");
+        return -1; // Valor inválido
+    }
+    int item = stack->items[stack->top];
+    printf("elemento del tope es %d\n", item);
+    return item;
+}
