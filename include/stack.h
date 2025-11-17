@@ -16,13 +16,11 @@ Stack* create_stack(int capacity);
 void free_stack(Stack *stack);
 
 // Operaciones de pila
-void push(Stack *stack, int item);
-int pop(Stack *stack);
-int peek(const Stack *stack);
+void push(Stack *stack, int item);//agregar elemento al tope
+int pop(Stack *stack); // eliminar y devolver el elemento en el tope
+int peek(const Stack *stack); // devolver el elemento en el tope sin eliminarlo
 
 // Verificación de estado
-bool is_empty(const Stack *stack);
-bool is_full(const Stack *stack);
-int get_size_stack(const Stack *stack);
+bool is_empty(const Stack *stack); //verifica si la pila está vacía
 
 #endif

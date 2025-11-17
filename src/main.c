@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "dynamic_array.h"
+#include "stack.h"
 #include "linked_array.h"
 #include "doble_linked_array.h"
 
@@ -41,6 +42,29 @@ void prueba_dynamic_array() {
     // Liberar memoria
     free_array(da);
 }
+void prueba_stack() {
+    // prueba de las funciones del stack hecho
+    printf("Testeo de las implementaciones de la pila\n");
+    Stack *stack = create_stack(5);
+    //push elementos
+    printf("\n -> Agregando elementos (10, 20, 30, ....)\n");
+    for (int i = 1; i <= 10; i++) {
+        push(stack, i * 10); // Agrega 10, 20, ...,
+        printf("Elemento %d agregado al tope de la pila\n", i * 10);
+    }
+    print_stack(stack);
+    //peek elemento del tope
+    printf("\n -> Obteniendo el elemento del tope sin eliminarlo\n");
+    peek(stack);
+    //pop elementos
+    printf("\n -> Eliminando elementos del tope de la pila\n");
+    for (int i = 0; i < 3; i++) {
+        pop(stack);
+        print_stack(stack); 
+    }
+    //liberar memoria
+    free_stack(stack);
+
 void prueba_linked_array(){
     //crar la lista enlazada
     LinkedList *list = create_linked_list();
@@ -126,8 +150,9 @@ void prueba_doble_linked_array() {
     free_doubly_linked_list(dll);
 }
 int main() {
-    prueba_dynamic_array();
-    prueba_doble_linked_array();
+    prueba_dynamic_array()
     prueba_linked_array();
+    prueba_doble_linked_array();
+    prueba_stack()
     return 0;
 }
