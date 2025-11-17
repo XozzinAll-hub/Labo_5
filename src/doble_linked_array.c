@@ -98,37 +98,40 @@ void insert_at_dll(DoublyLinkedList *list, int data, int position) {
 }
 //eliminar un elemento especifico de la lista doblemente enlazada
 int delete_element_dll(DoublyLinkedList *list, int data) {
-    //header guard
+    // Header guard
     if (!list) {
-        printf("ERROR>>no hay lista para eliminar\n");
+        printf("ERROR>> no hay lista para eliminar\n");
         return -1;
     }
+
     DNode *tempactu = list->head;
+    
+    // Buscar el nodo con el dato
     while (tempactu != NULL) {
-        tempactu = tempactu->next;
-        if (tempactu == NULL) {
-            printf("elemento %d no encontrado en la lista\n", data);
-            return -1;
+        if (tempactu->data == data) {//si se encuentra organizar todo 
+            
+            if (tempactu->prev != NULL) {
+                tempactu->prev->next = tempactu->next;
+            } else {
+                list->head = tempactu->next; // Era el primer nodo
+            }
+            // Conectar el nodo siguiente con el anterior
+            if (tempactu->next != NULL) {
+                tempactu->next->prev = tempactu->prev;
+            } else {
+                list->tail = tempactu->prev; // Era el último nodo
+            }
+            
+            free(tempactu);
+            list->size--;
+            printf("Elemento %d eliminado de la lista\n", data);
+            return data;
         }
-        //nodos vecinos
-        //si el previo nodo no es nulo
-        if (tempactu->prev != NULL) {
-            tempactu->prev->next = tempactu->next;
-        } else {
-            list->head = tempactu->next; // actualizar head si es el primer nodo
-        }
-        //ahora con el siguiente nodo
-        if (tempactu->next != NULL) {
-            tempactu->next->prev = tempactu->prev;
-        } else {// si es el ultimo nodo ;-;
-            list->tail = tempactu->prev; // actualizar tail si es el último nodo
+        tempactu = tempactu->next; 
     }
-    free(tempactu);
-    list->size--;
-    printf("elemento %d eliminado de la lista\n", data);
-    return data;
-    }
-    return -1; // En caso de no encontrar el elemento
+    
+    printf("Elemento %d no encontrado en la lista\n", data);
+    return -1;
 }
 
 //imprimir la lista hacia adelante
