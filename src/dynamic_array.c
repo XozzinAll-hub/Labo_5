@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "dynamic_array.h"
 //crear arreglo dinamico
 DynamicArray* create_array() {
@@ -28,7 +30,6 @@ void add_element(DynamicArray *da, int element) {
 }
 //eliminar elemento del arreglo dinamico
 void remove_element(DynamicArray *da, int index) {//index elemento a eliminar
-    int removed_element = da->array[index];
     if (da == NULL) {
         printf("ERROR>>no hay arreglo\n");
         return;
@@ -42,7 +43,7 @@ void remove_element(DynamicArray *da, int index) {//index elemento a eliminar
         da->array[i] = da->array[i + 1];
     }
     da->size--;
-    printf("elemento en índice %d eliminado del arreglo\n", removed_element, index);
+    printf("elemento en índice %d eliminado del arreglo\n", index);
 }
 
 //obtener elemento del arreglo dinamico

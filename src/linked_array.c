@@ -45,8 +45,7 @@ void insert_at(LinkedList *list, int data, int position) {
     if (position == 0) { // Insertar al inicio
         new_node->next = list->head;
         list->head = new_node;
-    }
-    if (position == list->size) { // Insertar al final
+    } else if (position == list->size) { // Insertar al final
         if (list->head == NULL) {
             list->head = new_node;
         } else {
@@ -123,9 +122,10 @@ void print_list(const LinkedList *list) {
         printf("ERROR>>no hay lista enlazada\n");
         return;
     }
-    if (list->head == NULL)
+    if (list->head == NULL) {
         printf("lista enlazada vacía\n");
-        return;     
+        return;
+    }
     
     if (list->size == 0) {
         printf("lista enlazada vacía\n");

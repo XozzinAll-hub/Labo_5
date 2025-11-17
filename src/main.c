@@ -4,6 +4,8 @@
 #include "linked_array.h"
 #include "doble_linked_array.h"
 
+void print_stack(Stack *stack);
+
 
 void prueba_dynamic_array() {
     printf("Testeo de las implementaciones del arreglo dinamico\n");
@@ -20,7 +22,7 @@ void prueba_dynamic_array() {
     
     // Obtener elementos
     printf("\n -> Obtener los elementos de cada posicion que se inserto \n");
-    for (int i = 0; i < get_size(da); i++) {
+    for (int i = 0; i < da->size; i++) {
         int element = get_element(da, i);
         printf("Elemento en posición %d: %d\n", i, element);
     }
@@ -31,7 +33,7 @@ void prueba_dynamic_array() {
     print_array(da);
     remove_element(da, 4);  // Eliminar del medio
     print_array(da);
-    remove_element(da, get_size(da) - 1);  // Eliminar último
+    remove_element(da, da->size - 1);  // Eliminar último
     print_array(da);
     
     // Probar casos de error por "out range"
@@ -64,6 +66,7 @@ void prueba_stack() {
     }
     //liberar memoria
     free_stack(stack);
+}
 
 void prueba_linked_array(){
     //crar la lista enlazada
@@ -101,6 +104,7 @@ void prueba_linked_array(){
     delete_element(list, 100); // Eliminar 100 (no existe) 
     //liberar memoria
     free_list(list); 
+    
 }
 
 
@@ -150,9 +154,9 @@ void prueba_doble_linked_array() {
     free_doubly_linked_list(dll);
 }
 int main() {
-    prueba_dynamic_array()
+    prueba_dynamic_array();
     prueba_linked_array();
     prueba_doble_linked_array();
-    prueba_stack()
+    prueba_stack();
     return 0;
 }

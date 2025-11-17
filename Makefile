@@ -1,4 +1,4 @@
-# Compilador
+## Compilador
 CC = gcc
 
 # Flags de compilación
@@ -8,14 +8,10 @@ CFLAGS = -Wall -Wextra -std=c99 -Iinclude -g
 SRCDIR = src
 INCDIR = include
 
-# Archivos fuente
-SOURCES = $(SRCDIR)/main.c \
-          $(SRCDIR)/dynamic_array.c \
-          $(SRCDIR)/linked_list.c \
-          $(SRCDIR)/doubly_linked_list.c \
-          $(SRCDIR)/stack.c
+# Archivos fuente (si alguno no existe, ignoralo por ahora)
+SOURCES = $(wildcard $(SRCDIR)/*.c)
 
-# Archivos objeto (se generan automáticamente)
+# Archivos objeto
 OBJECTS = $(SOURCES:.c=.o)
 
 # Nombre del ejecutable
@@ -29,9 +25,12 @@ $(TARGET): $(OBJECTS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Limpiar archivos generados
+# Ejecutar
+run: $(TARGET)
+	./$(TARGET)
+
+# Limpiar
 clean:
 	rm -f $(OBJECTS) $(TARGET)
 
-# Para evitar conflictos con archivos que se llamen igual
-.PHONY: clean
+.PHONY: clean run
