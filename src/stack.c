@@ -102,3 +102,20 @@ int peek(const Stack *stack) {
     printf("elemento del tope es %d\n", item);
     return item;
 }
+//imprimir stack (desde el tope hasta la base)
+void print_stack(const Stack *stack) {
+    //hederguard
+    if(!stack) {
+        printf("ERROR>> no hay pila\n");
+        return;
+    }
+    if (is_empty(stack)) {
+        printf("pila vacia\n");
+        return;
+    }
+    printf("Elementos en la pila (de tope a base): ");
+    for (int i = stack->top; i >= 0; i--) {
+        printf("%d ", stack->items[i]);
+    }
+    printf("\n");
+}
